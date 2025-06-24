@@ -1,5 +1,11 @@
+-- create database --
+create database total_db;
+
+-- use database total_db --
 use total_db;
 
+-- create all tables --
+-- 1. begin_inventory --
 CREATE TABLE begin_inventory (
     InventoryId VARCHAR(50) PRIMARY KEY,
     Store INT,
@@ -12,6 +18,7 @@ CREATE TABLE begin_inventory (
     startDate DATE
 );
 
+-- 2.end_inventory --
 CREATE TABLE end_inventory (
     InventoryId VARCHAR(50) PRIMARY KEY,
     Store INT,
@@ -23,6 +30,8 @@ CREATE TABLE end_inventory (
     Price DECIMAL(10,2),
     endDate DATE
 );
+
+-- 3. purchase_prices --
 CREATE TABLE purchase_prices (
     Brand VARCHAR(100),
     Description VARCHAR(255),
@@ -35,6 +44,7 @@ CREATE TABLE purchase_prices (
     VendorName VARCHAR(255)
 );
 
+-- 4.purchases --
 CREATE TABLE purchases (
     InventoryId VARCHAR(50),
     Store INT,
@@ -54,6 +64,7 @@ CREATE TABLE purchases (
     Classification VARCHAR(100)
 );
 
+-- 5.vendor_invoice --
 CREATE TABLE vendor_invoice (
     VendorNumber INT,
     VendorName VARCHAR(255),
@@ -67,6 +78,7 @@ CREATE TABLE vendor_invoice (
     Approval DECIMAL(10,2)
 );
 
+-- 6.sales --
 CREATE TABLE sales (
     InventoryId VARCHAR(50),
     Store INT,
@@ -83,6 +95,7 @@ CREATE TABLE sales (
     VendorNo INT,
     VendorName VARCHAR(255)
 );
+
 -- loaded files thorugh python(spyder)
 -- SQL QUERIES --
 -- 1 TOTAL BEINNING INVENTORY PER BRAND--
