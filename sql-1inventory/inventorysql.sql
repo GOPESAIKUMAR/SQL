@@ -97,6 +97,14 @@ CREATE TABLE sales (
 );
 
 -- loaded files thorugh python(spyder)
+-- use this for every table so all files tables can be loaded -
+LOAD DATA INFILE '/path/to/file.csv' --file path
+INTO TABLE your_table --table name
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
 -- SQL QUERIES --
 -- 1 TOTAL BEINNING INVENTORY PER BRAND--
 SELECT Brand, SUM(onHand) AS total_begin_inventory
