@@ -189,7 +189,7 @@ GROUP BY VendorName
 HAVING SUM(SalesQuantity) >
   (SELECT AVG(total_vendor_qty)
    FROM (
-     SELECT VendorName, SUM(SalesQuantity) AS total_vendor_qty
+   SELECT VendorName, SUM(SalesQuantity) AS total_vendor_qty
      FROM (SELECT * FROM sales LIMIT 500000) as s
      GROUP BY VendorName
    ) AS vendor_avg);
@@ -197,7 +197,8 @@ HAVING SUM(SalesQuantity) >
 -- 17 Most Sold Product per Vendor cte sub--
 WITH vendor_sales AS (
   SELECT VendorName, Description, SUM(SalesQuantity) AS total_qty,
-         RANK() OVER (PARTITION BY VendorName ORDER BY SUM(SalesQuantity) DESC) AS rnk
+         RANK() OVER (PARTITION BY VendorName 
+  ORDER BY SUM(SalesQuantity) DESC) AS rnk
   FROM (SELECT * FROM sales LIMIT 500000) as s
   GROUP BY VendorName, Description
 )
